@@ -50,13 +50,16 @@ def shop(request):
 
     product = Product.objects.all()
     context = {
+        'items' : items,
+        'order' : order,
+        'cartItems' : cartItem,
         'products' : product,
         'cartItems' : cartItem,
     }
     return render(request, "shop.html", context=context)
 
-def product_detail(request):
-    product = product.objects.all()
+def product_detail(request, slug):
+    product = Product.objects.filter(slug=slug)
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)

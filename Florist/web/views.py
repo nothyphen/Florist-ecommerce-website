@@ -273,3 +273,32 @@ def categoryList(request, slug):
     }
     return render(request, 'category.html', context=context)
 
+def SearchProduct(request):
+    name = address = request.POST['product']
+    category = Category.objects.all()
+    product = Product.objects.filter(name__contains=str(name))
+    allcategory = Category.objects.all()
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItem = order.get_cart_items
+        
+    else:
+        items = []
+        order = {
+            'get_cart_total':0,
+        }
+        cartItem = ''
+
+    context = {
+        'items' : items,
+        'order' : order,
+        'cartItems' : cartItem,
+        'products' : product,
+        'cartItems' : cartItem,
+        'category' : category,
+        'categories' : allcategory,
+    }
+    print(product)
+    return render(request, 'search.html', context=context)

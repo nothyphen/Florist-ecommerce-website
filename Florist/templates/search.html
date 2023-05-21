@@ -1,6 +1,17 @@
+<!-- 
+THEME: Aviato | E-commerce template
+VERSION: 1.0.0
+AUTHOR: Themefisher
+
+HOMEPAGE: https://themefisher.com/products/aviato-e-commerce-template/
+DEMO: https://demo.themefisher.com/aviato/
+GITHUB: https://github.com/themefisher/Aviato-E-Commerce-Template/
+
+WEBSITE: https://themefisher.com
+TWITTER: https://twitter.com/themefisher
+FACEBOOK: https://www.facebook.com/themefisher
+-->
 {% load static %}
-{% load tags %}
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +19,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Florist</title>
+  <title>Aviato | E-commerce template</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -18,7 +29,6 @@
   <meta name="author" content="Themefisher">
   <meta name="generator" content="Themefisher Constra HTML Template v1.0">
   
-  <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
   
   <!-- Themefisher Icon font -->
@@ -112,7 +122,7 @@
 								class="tf-ion-ios-search-strong"></i> جست و جو </a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
-								<form action="/search/" method="POST">{% csrf_token %}<input name="product" type="search" class="form-control" placeholder="Search..."></form>
+								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
 							</li>
 						</ul>
 					</li><!-- / Search -->
@@ -203,7 +213,7 @@
 										<li><a href="{% url 'web:faq' %}">سوالات پرتکرار</a></li>
 									</ul>
 								</div>
-								<div class="col-sm-3 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
 									<ul>
 										<li class="dropdown-header">دسته بندی</li>
 										<li role="separator" class="divider"></li>
@@ -229,7 +239,7 @@
 								{% if not user.is_authenticated%}
 									<div class="col-sm-3 col-xs-12">
 										<ul>
-											<li class="dropdown-header">صفحات کاربری</li>
+											<li class="dropdown-header">Utility</li>
 											<li role="separator" class="divider"></li>
 											<li><a href="{% url 'account:login' %}">صفحه ورود</a></li>
 											<li><a href="{% url 'account:register' %}">صفحه ثبت نام</a></li>
@@ -254,117 +264,41 @@
 	</nav>
 </section>
 
-<div class="hero-slider">
-  <div class="slider-item th-fullpage hero-area" style="background-image: url({% static "images/backgrounds/background.jpeg" %});">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 text-center">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">محصولات</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">زیبایی طبیعت <br> پنهان است در نکات ریز</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{% url 'web:shop' %}">همین الان سفارش بدین</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slider-item th-fullpage hero-area" style="background-image: url({% static "images/slider/slider-3.jpeg" %});">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 text-left">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">محصولات</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">زیبایی طبیعت <br> پنهان است در نکات ریز</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{% url 'web:shop' %}">همین الان سفارش بدین</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slider-item th-fullpage hero-area" style="background-image: url({% static "images/slider/slider-2.jpeg" %});">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 text-right">
-          <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">محصولات</p>
-          <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{% url 'web:shop' %}">Shop Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-
-<section class="products section bg-gray">
+<section class="products section">
 	<div class="container">
 		<div class="row">
-			<div class="title text-center">
-				<h2>محصولات داغ</h2>
-			</div>
-		</div>
-		<div class="row">
+            {% if products %}
 			{% for product in products %}
 			<div class="col-md-4">
 				<div class="product-item">
 					<div class="product-thumb">
-						<img class="img-responsive" src="{{ product.image.url }}" alt="product-img" />
+						<img class="img-responsive" src="{{product.image.url}}" alt="product-img" />
 						<div class="preview-meta">
 							<ul>
 								<li>
-									<button data-product="{{product.id}}" data-action="add" class="bbtn btn-warning btn-lg update-cart">اضافه کردن به سبد خرید</button>
+									<button data-product="{{product.id}}" data-action="add" class="btn btn-warning btn-lg update-cart">اضافه کردن به سبد خرید</button>
 								</li>
 							</ul>
                       	</div>
 					</div>
 					<div class="product-content">
-						<h4><a href="{% url 'web:detailproduct' product.slug %}">{{ product.name }}</a></h4>
-						<p class="price">${{ product.price }}</p>
+						<h4><a href="{% url 'web:detailproduct' product.slug %}">{{product.name}}</a></h4>
+						<p class="price">${{product.price}}</p>
 					</div>
 				</div>
 			</div>
 			{% endfor %}
-
+            {% else %}
+            <h3 style="text-align: center;">محصولی یافت نشد</h3>
+            {% endif %}
+		<!-- Modal -->
 
 		</div>
 	</div>
 </section>
 
 
-<!--
-Start Call To Action
-==================================== -->
-<section class="call-to-action bg-gray section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="title">
-					<h2>عضو شین تا بتونین از محصولات لذت ببرین :)</h2>
-				</div>
-				<div class="col-lg-6 col-md-offset-3">
-				    <div class="input-group subscription-form">
-				      <input type="text" class="form-control" placeholder="Enter Your Email Address">
-				      <span class="input-group-btn">
-				        <button class="btn btn-main" type="button">همین الان عضو شو!</button>
-				      </span>
-				    </div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-
-			</div>
-		</div> 		<!-- End row -->
-	</div>   	<!-- End container -->
-</section>   <!-- End section -->
-
-<section class="section instagram-feed">
-	<div class="container">
-		<div class="row">
-			<div class="title">
-				<h2>ما را در شبکه های اجتماعی دنبال کنید</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<div class="instagram-slider" id="instafeed" data-accessToken="IGQVJYeUk4YWNIY1h4OWZANeS1wRHZARdjJ5QmdueXN2RFR6NF9iYUtfcGp1NmpxZA3RTbnU1MXpDNVBHTzZAMOFlxcGlkVHBKdjhqSnUybERhNWdQSE5hVmtXT013MEhOQVJJRGJBRURn"></div>
-			</div>
-		</div>
-	</div>
-</section>
 
 
 <footer class="footer section text-center">
@@ -373,35 +307,41 @@ Start Call To Action
 			<div class="col-md-12">
 				<ul class="social-media">
 					<li>
-						<a href="https://www.facebook.com/">
+						<a href="https://www.facebook.com/themefisher">
 							<i class="tf-ion-social-facebook"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/">
+						<a href="https://www.instagram.com/themefisher">
 							<i class="tf-ion-social-instagram"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.twitter.com/">
+						<a href="https://www.twitter.com/themefisher">
 							<i class="tf-ion-social-twitter"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.pinterest.com/">
+						<a href="https://www.pinterest.com/themefisher/">
 							<i class="tf-ion-social-pinterest"></i>
 						</a>
 					</li>
 				</ul>
 				<ul class="footer-menu text-uppercase">
 					<li>
-						<a href="{% url 'web:contact' %}">ارتباط با ما</a>
+						<a href="contact.html">CONTACT</a>
 					</li>
 					<li>
-						<a href="{% url 'web:shop' %}">فروشگاه</a>
+						<a href="shop.html">SHOP</a>
+					</li>
+					<li>
+						<a href="pricing.html">Pricing</a>
+					</li>
+					<li>
+						<a href="contact.html">PRIVACY POLICY</a>
 					</li>
 				</ul>
-				<p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by </a></p>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
 			</div>
 		</div>
 	</div>
@@ -456,6 +396,7 @@ Start Call To Action
         const csrftoken = getToken('csrftoken');
     </script>
     
-	{% endblock %}
+
+
   </body>
   </html>

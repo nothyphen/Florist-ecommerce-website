@@ -18,6 +18,7 @@ urlpatterns = [
     path('orders/', views.orders, name="orders"),
     path('dashboard/', views.address, name="address"),
     path('profile-detail/', views.profile_detail, name="profile_detail"),
-    path('category/<slug:slug>/', views.categoryList, name='category_list')
+    path('category/<slug:slug>/', views.categoryList, name='category_list'),
+    path('search/', views.SearchProduct, name='search'),
     #path('payment/', views.paymentinfo, name='payment_info'),
 ]

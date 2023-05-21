@@ -49,17 +49,20 @@ def shop(request):
         cartItem = ''
 
     product = Product.objects.all()
+    category = Category.objects.all()
     context = {
         'items' : items,
         'order' : order,
         'cartItems' : cartItem,
         'products' : product,
         'cartItems' : cartItem,
+        'categories' : category,
     }
     return render(request, "shop.html", context=context)
 
 def product_detail(request, slug):
     product = Product.objects.filter(slug=slug)
+    category = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -76,10 +79,12 @@ def product_detail(request, slug):
         'items' : items,
         'order' : order,
         'cartItems' : cartItem,
+        'categories' : category,
     }
     return render(request, 'product-single.html', context=context)
 
 def checkout(request):
+    category = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -96,10 +101,12 @@ def checkout(request):
             'items' : items,
             'order' : order,
             'cartItems' : cartItem,
+            'categories' : category,
         }
     return render(request, 'checkout.html', context=context)
 
 def cart(request):
+    category = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -116,6 +123,7 @@ def cart(request):
             'items' : items,
             'order' : order,
             'cartItems' : cartItem,
+            'categories' : category,
         }
     return render(request, 'cart.html', context=context)
 
@@ -123,6 +131,7 @@ def confirm(request):
     return render(request, 'confirmation.html')
 
 def contact(request):
+    category = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -138,13 +147,16 @@ def contact(request):
         'items' : items,
         'order' : order,
         'cartItems' : cartItem,
+        'categories' : category,
     }
-    return render(request, "contact.html")
+    return render(request, "contact.html", context=context)
 
 def about(request):
+    category = Category.objects.all()
     about = AboutUs.objects.all()
     context = {
         'abouts' : about,
+        'categories' : category,
     }
     return render(request, 'about.html', context=context)
 
@@ -153,8 +165,10 @@ def error404(request):
 
 def faq(request):
     faq = Faq.objects.all()
+    category = Category.objects.all()
     context = {
         'faqs' : faq,
+        'categories' : category,
     }
     return render(request, 'faq.html', context=context)
 
@@ -197,6 +211,7 @@ def processOrder(request):
     return redirect('/payment/')
 
 def dashboard(request):
+    category = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -217,6 +232,7 @@ def dashboard(request):
             'order' : order,
             'cartItems' : cartItem,
             'allorders' : allorders,
+            'categories' : category,
         }
     return render(request, 'dashboard.html', context=context)
 
@@ -231,6 +247,7 @@ def profile_detail(request):
 
 def categoryList(request, slug):
     category = get_object_or_404(Category, slug=slug, status=True)
+    allcategory = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -252,6 +269,7 @@ def categoryList(request, slug):
         'products' : product,
         'cartItems' : cartItem,
         'category' : category,
+        'categories' : allcategory,
     }
     return render(request, 'category.html', context=context)
 

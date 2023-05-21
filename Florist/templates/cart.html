@@ -194,7 +194,15 @@
 											<li><a href="{% url 'web:faq' %}">سوالات پرتکرار</a></li>
 										</ul>
 									</div>
-	
+									<div class="col-sm-3 col-xs-12">
+										<ul>
+											<li class="dropdown-header">دسته بندی</li>
+											<li role="separator" class="divider"></li>
+											{% for category in categories %}
+											<li><a href="{% url 'web:category_list' category.slug %}">{{category.name}}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
 									<!-- Contact -->
 									{% if user.is_authenticated%}
 										<div class="col-sm-3 col-xs-12">

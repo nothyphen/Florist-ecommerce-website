@@ -21,8 +21,9 @@ class Customer(models.Model):
     
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    #image = models.ImageField(upload_to="images/")
-     #image = ImageField()
+    slug = models.SlugField(max_length=100, unique=True)
+    status = models.BooleanField(default=True)
+    position = models.IntegerField()
      
     class Meta:
         verbose_name_plural = "گروه محصولات"
@@ -37,7 +38,7 @@ class Product(models.Model):
     ('n', 'No'),
     )
     name = models.CharField(max_length=200)
-    category = models.ManyToManyField(Category, null=True, blank=True)
+    category = models.ManyToManyField(Category, null=True, blank=True, related_name="product")
     price = models.FloatField()
     image = models.ImageField(upload_to='images/')
     info = models.TextField(default='')

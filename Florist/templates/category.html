@@ -11,7 +11,6 @@ WEBSITE: https://themefisher.com
 TWITTER: https://twitter.com/themefisher
 FACEBOOK: https://www.facebook.com/themefisher
 -->
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +29,6 @@ FACEBOOK: https://www.facebook.com/themefisher
   <meta name="author" content="Themefisher">
   <meta name="generator" content="Themefisher Constra HTML Template v1.0">
   
-  <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
   
   <!-- Themefisher Icon font -->
@@ -257,93 +255,36 @@ FACEBOOK: https://www.facebook.com/themefisher
 		</div><!-- / .container -->
 	</nav>
 </section>
-<section class="page-wrapper">
-	<div class="contact-section">
-		<div class="container">
-			<div class="row">
-				<!-- Contact Form -->
-				<div class="contact-form col-md-6 " >
-					<form id="contact-form" method="post" action="" role="form">
-					
-						<div class="form-group">
-							<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
-						</div>
-						
-						<div class="form-group">
-							<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
-						</div>
-						
-						<div class="form-group">
-							<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
-						</div>
-						
-						<div class="form-group">
-							<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>	
-						</div>
-						
-						<div id="mail-success" class="success">
-							Thank you. The Mailman is on His Way :)
-						</div>
-						
-						<div id="mail-fail" class="error">
-							Sorry, don't know what happened. Try later :(
-						</div>
-						
-						<div id="cf-submit">
-							<input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
-						</div>						
-						
-					</form>
-				</div>
-				<!-- ./End Contact Form -->
-				
-				<!-- Contact Details -->
-				<div class="contact-details col-md-6 " >
-					<div class="google-map">
-						<div id="map"></div>
+
+
+<section class="products section">
+	<div class="container">
+		<div class="row">
+			{% for product in category.product.all %}
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<img class="img-responsive" src="{{product.image.url}}" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<button data-product="{{product.id}}" data-action="add" class="btn btn-warning btn-lg update-cart">اضافه کردن به سبد خرید</button>
+								</li>
+							</ul>
+                      	</div>
 					</div>
-					<ul class="contact-short-info" >
-						<li>
-							<i class="tf-ion-ios-home"></i>
-							<span>Khaja Road, Bayzid, Chittagong, Bangladesh</span>
-						</li>
-						<li>
-							<i class="tf-ion-android-phone-portrait"></i>
-							<span>Phone: +880-31-000-000</span>
-						</li>
-						<li>
-							<i class="tf-ion-android-globe"></i>
-							<span>Fax: +880-31-000-000</span>
-						</li>
-						<li>
-							<i class="tf-ion-android-mail"></i>
-							<span>Email: hello@example.com</span>
-						</li>
-					</ul>
-					<!-- Footer Social Links -->
-					<div class="social-icon">
-						<ul>
-							<li><a class="fb-icon" href="https://www.facebook.com/themefisher"><i class="tf-ion-social-facebook"></i></a></li>
-							<li><a href="https://www.twitter.com/themefisher"><i class="tf-ion-social-twitter"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-dribbble-outline"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-googleplus-outline"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-pinterest-outline"></i></a></li>
-						</ul>
+					<div class="product-content">
+						<h4><a href="{% url 'web:detailproduct' product.slug %}">{{product.name}}</a></h4>
+						<p class="price">${{product.price}}</p>
 					</div>
-					<!--/. End Footer Social Links -->
 				</div>
-				<!-- / End Contact Details -->
-					
-				
-			
-			</div> <!-- end row -->
-		</div> <!-- end container -->
+			</div>
+			{% endfor %}
+		<!-- Modal -->
+
+		</div>
 	</div>
 </section>
-	
-
-  
-
 
 
 
@@ -354,35 +295,41 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-md-12">
 				<ul class="social-media">
 					<li>
-						<a href="https://www.facebook.com/">
+						<a href="https://www.facebook.com/themefisher">
 							<i class="tf-ion-social-facebook"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/">
+						<a href="https://www.instagram.com/themefisher">
 							<i class="tf-ion-social-instagram"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.twitter.com/">
+						<a href="https://www.twitter.com/themefisher">
 							<i class="tf-ion-social-twitter"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.pinterest.com/">
+						<a href="https://www.pinterest.com/themefisher/">
 							<i class="tf-ion-social-pinterest"></i>
 						</a>
 					</li>
 				</ul>
 				<ul class="footer-menu text-uppercase">
 					<li>
-						<a href="{% url 'web:contact' %}">ارتباط با ما</a>
+						<a href="contact.html">CONTACT</a>
 					</li>
 					<li>
-						<a href="{% url 'web:shop' %}">فروشگاه</a>
+						<a href="shop.html">SHOP</a>
+					</li>
+					<li>
+						<a href="pricing.html">Pricing</a>
+					</li>
+					<li>
+						<a href="contact.html">PRIVACY POLICY</a>
 					</li>
 				</ul>
-				<p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by </a></p>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
 			</div>
 		</div>
 	</div>
@@ -415,6 +362,27 @@ FACEBOOK: https://www.facebook.com/themefisher
 
     <!-- Main Js File -->
     <script src="{% static 'js/script.js' %}"></script>
+	<script type="text/javascript" src="{% static "js/cart.js" %}"></script>
+	<script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+        const csrftoken = getToken('csrftoken');
+    </script>
     
 
 

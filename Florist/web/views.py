@@ -228,3 +228,30 @@ def address(request):
 
 def profile_detail(request):
     return render(request, 'profile-details.html')
+
+def categoryList(request, slug):
+    category = get_object_or_404(Category, slug=slug, status=True)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItem = order.get_cart_items
+        
+    else:
+        items = []
+        order = {
+            'get_cart_total':0,
+        }
+        cartItem = ''
+
+    product = Product.objects.all()
+    context = {
+        'items' : items,
+        'order' : order,
+        'cartItems' : cartItem,
+        'products' : product,
+        'cartItems' : cartItem,
+        'category' : category,
+    }
+    return render(request, 'category.html', context=context)
+

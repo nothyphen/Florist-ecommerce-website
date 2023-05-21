@@ -110,8 +110,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 								<span class="total-price">{{ order.get_cart_total }}</span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="{% url 'web:cart' %}" class="btn btn-small">View Cart</a></li>
-								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">Checkout</a></li>
+								<li><a href="{% url 'web:cart' %}" class="btn btn-small">سبد خرید</a></li>
+								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">ثبت نهایی سفارش</a></li>
 							</ul>
 						</div>
 
@@ -261,16 +261,11 @@ FACEBOOK: https://www.facebook.com/themefisher
 		<div class="row">
 			<div class="col-md-6">
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="shop.html">Shop</a></li>
-					<li class="active">Single Product</li>
+					<li><a href="index.html">خانه</a></li>
+					<li><a href="shop.html">فروشگاه</a></li>
 				</ol>
 			</div>
 			<div class="col-md-6">
-				<ol class="product-pagination text-right">
-					<li><a href="blog-left-sidebar.html"><i class="tf-ion-ios-arrow-left"></i> Next </a></li>
-					<li><a href="blog-left-sidebar.html">Preview <i class="tf-ion-ios-arrow-right"></i></a></li>
-				</ol>
 			</div>
 		</div>
 		<div class="row mt-20">
@@ -304,32 +299,38 @@ FACEBOOK: https://www.facebook.com/themefisher
 				</div>
 			</div>
 			<div class="col-md-7">
-				<div class="single-product-details">
+				<div style="direction: rtl;" class="single-product-details">
 					<h2>{{pro.name}}</h2>
-					<p class="product-price">${{pro.price}}</p>
+					<hr>
+					<p>قیمت محصول :</p>
+					<p style="font-size: xx-large;" class="product-price">{{pro.price}} تومان </p>
 					<div class="color-swatches">
 					</div>
 					<div class="product-size">
 					</div>
 					<div class="product-quantity">
 						<span>تعداد موجود:</span>
-						<p>{{pro.quantety}}</p>
+						<p style="margin-top: 10px; margin-right: -30px;">{{pro.quantety}}</p>
 					</div>
+					<hr>
+					<hr>
 					<div class="product-category">
+						<span>توضیحات :</span>
+						<p>{{pro.info}}</p>
 					</div>
-					<button data-product="{{pro.id}}" data-action="add" class="btn btn-warning btn-lg update-cart">اضافه کردن به سبد خرید</button>
+					<button style="margin-top: 10px;" data-product="{{pro.id}}" data-action="add" class="btn btn-warning btn-lg update-cart">اضافه کردن به سبد خرید</button>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="tabCommon mt-20">
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
+		<div style="direction: rtl;" class="row">
+			<div style="direction: rtl;" class="col-xs-12">
+				<div style="direction: rtl;" class="tabCommon mt-20">
+					<ul style="direction: rtl;" class="nav nav-tabs">
+						<li style="direction: rtl;" class="active"><a style="direction: rtl;" data-toggle="tab" href="#details" aria-expanded="true">درمورد محصول</a></li>
 					</ul>
 					<div class="tab-content patternbg">
-						<div id="details" class="tab-pane fade active in">
-							<h4>Product Description</h4>
+						<div style="direction: rtl;" id="details" class="tab-pane fade active in">
+							<h4>توضیحات تکمیلی</h4>
 							<p>{{pro.info}}</p>
 						</div>
 						<div id="reviews" class="tab-pane fade">
@@ -459,41 +460,35 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="col-md-12">
 				<ul class="social-media">
 					<li>
-						<a href="https://www.facebook.com/themefisher">
+						<a href="https://www.facebook.com/">
 							<i class="tf-ion-social-facebook"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/themefisher">
+						<a href="https://www.instagram.com/">
 							<i class="tf-ion-social-instagram"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.twitter.com/themefisher">
+						<a href="https://www.twitter.com/">
 							<i class="tf-ion-social-twitter"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://www.pinterest.com/themefisher/">
+						<a href="https://www.pinterest.com/">
 							<i class="tf-ion-social-pinterest"></i>
 						</a>
 					</li>
 				</ul>
 				<ul class="footer-menu text-uppercase">
 					<li>
-						<a href="contact.html">CONTACT</a>
+						<a href="{% url 'web:contact' %}">ارتباط با ما</a>
 					</li>
 					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
+						<a href="{% url 'web:shop' %}">فروشگاه</a>
 					</li>
 				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
+				<p class="copyright-text">Copyright &copy;2023, Designed &amp; Developed by </a></p>
 			</div>
 		</div>
 	</div>

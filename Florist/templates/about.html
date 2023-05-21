@@ -110,8 +110,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 								<span class="total-price">{{ order.get_cart_total }}</span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="{% url 'web:cart' %}" class="btn btn-small">View Cart</a></li>
-								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">Checkout</a></li>
+								<li><a href="{% url 'web:cart' %}" class="btn btn-small">سبد خرید</a></li>
+								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">ثبت نهایی سفارش</a></li>
 							</ul>
 						</div>
 
@@ -123,7 +123,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								class="tf-ion-ios-search-strong"></i> جست و جو </a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+								<form action="/search/" method="POST">{% csrf_token %}<input name="product" type="search" class="form-control" placeholder="Search..."></form>
 							</li>
 						</ul>
 					</li><!-- / Search -->
@@ -268,30 +268,29 @@ FACEBOOK: https://www.facebook.com/themefisher
 
 <section class="about section">
 	<div class="container">
+		{% for about in abouts %}
 		<div class="row">
 			<div class="col-md-6">
-				<img class="img-responsive" src="images/about/about.jpg">
+				<img class="img-responsive" src="{{about.image.url}}">
 			</div>
 			<div class="col-md-6">
-				<h2 class="mt-40">About Our Shop</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius enim, accusantium repellat ex autem numquam iure officiis facere vitae itaque.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam qui vel cupiditate exercitationem, ea fuga est velit nulla culpa modi quis iste tempora non, suscipit repellendus labore voluptatem dicta amet?</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam qui vel cupiditate exercitationem, ea fuga est velit nulla culpa modi quis iste tempora non, suscipit repellendus labore voluptatem dicta amet?</p>
-				<a href="contact.html" class="btn btn-main mt-20">Download Company Profile</a>
+				<h2 style="direction: rtl;" class="mt-40">درمورد فلوریستا</h2>
+				<p style="direction: rtl;">{{about.detail}}</p>
 			</div>
 		</div>
+		{% endfor %}
 		<div class="row mt-40">
 			<div class="col-md-3 text-center">
-				<img src="images/about/awards-logo.png">
+				<img src="{% static "/images/about/awards-logo.png" %}">
 			</div>
 			<div class="col-md-3 text-center">
-				<img src="images/about/awards-logo.png">
+				<img src="{% static "images/about/awards-logo.png" %}">
 			</div>
 			<div class="col-md-3 text-center">
-				<img src="images/about/awards-logo.png">
+				<img src="{% static "images/about/awards-logo.png" %}">
 			</div>
 			<div class="col-md-3 text-center">
-				<img src="images/about/awards-logo.png">
+				<img src="{% static "images/about/awards-logo.png" %}">
 			</div>
 		</div>
 	</div>
@@ -302,34 +301,14 @@ FACEBOOK: https://www.facebook.com/themefisher
 			<div class="title"><h2>Team Members</h2></div>
 		</div>
 		<div class="row">
+			{% for member in members %}
 			<div class="col-md-3">
 				<div class="team-member text-center">
-					<img class="img-circle" src="images/team/team-1.jpg">
-					<h4>Jonathon Andrew</h4>
-					<p>Founder</p>
+					<img class="img-circle" src="{{member.image.url}}">
+					<h4>{{member.name}}</h4>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="team-member text-center">
-					<img class="img-circle" src="images/team/team-2.jpg">
-					<h4>Adipisci Velit</h4>
-					<p>Developer</p>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="team-member text-center">
-					<img class="img-circle" src="images/team/team-3.jpg">
-					<h4>John Fexit</h4>
-					<p>Shop Manager</p>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="team-member text-center">
-					<img class="img-circle" src="images/team/team-1.jpg">
-					<h4>John Fexit</h4>
-					<p>Shop Manager</p>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 </section>

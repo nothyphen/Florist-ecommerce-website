@@ -90,8 +90,8 @@
 									<span class="total-price">{{ order.get_cart_total }}</span>
 								</div>
 								<ul class="text-center cart-buttons">
-									<li><a href="{% url 'web:cart' %}" class="btn btn-small">View Cart</a></li>
-									<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">Checkout</a></li>
+									<li><a href="{% url 'web:cart' %}" class="btn btn-small">سبد خرید</a></li>
+								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">ثبت نهایی سفارش</a></li>
 								</ul>
 							</div>
 	
@@ -103,7 +103,7 @@
 									class="tf-ion-ios-search-strong"></i> جست و جو </a>
 							<ul class="dropdown-menu search-dropdown">
 								<li>
-									<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+									<form action="/search/" method="POST">{% csrf_token %}<input name="product" type="search" class="form-control" placeholder="Search..."></form>
 								</li>
 							</ul>
 						</li><!-- / Search -->
@@ -250,10 +250,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Cart</h1>
-					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li class="active">cart</li>
+					<h1 style="direction: rtl;" class="page-name">سبد خرید</h1>
+					<ol style="direction: rtl;" class="breadcrumb">
+						<li><a href="index.html">خانه</a></li>
+						<li class="active">سبد خرید</li>
 					</ol>
 				</div>
 			</div>
@@ -274,9 +274,9 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th class="">Item Name</th>
-                      <th class="">Item Price</th>
-                      <th class="">Actions</th>
+                      <th class="">اسم محصول</th>
+                      <th class="">قیمت محصول</th>
+                      <th class=""></th>
                     </tr>
                   </thead>
 				  {% for item in items %}
@@ -290,13 +290,13 @@
                       </td>
                       <td class="">{{item.product.price|floatformat:2}}</td>
                       <td class="">
-						<button data-product="{{ item.product.id }}" data-action="remove" type="button" class="btn btn-danger update-cart">Remove</button>
+						<button data-product="{{ item.product.id }}" data-action="remove" type="button" class="btn btn-danger update-cart">حذف محصول</button>
                       </td>
                     </tr>
                   </tbody>
 				  {% endfor %}
                 </table>
-                <a href="{% url 'web:checkout' %}" class="btn btn-main pull-right">Checkout</a>
+                <a href="{% url 'web:checkout' %}" class="btn btn-main pull-right">ثبت نهایی</a>
               </form>
             </div>
           </div>

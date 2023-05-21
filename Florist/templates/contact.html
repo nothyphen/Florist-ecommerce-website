@@ -111,8 +111,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 								<span class="total-price">{{ order.get_cart_total }}</span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="{% url 'web:cart' %}" class="btn btn-small">View Cart</a></li>
-								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">Checkout</a></li>
+								<li><a href="{% url 'web:cart' %}" class="btn btn-small">سبد خرید</a></li>
+								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">ثبت نهایی سفارش</a></li>
 							</ul>
 						</div>
 
@@ -124,7 +124,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								class="tf-ion-ios-search-strong"></i> جست و جو </a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+								<form action="/search/" method="POST">{% csrf_token %}<input name="product" type="search" class="form-control" placeholder="Search..."></form>
 							</li>
 						</ul>
 					</li><!-- / Search -->
@@ -274,31 +274,31 @@ FACEBOOK: https://www.facebook.com/themefisher
 					<form id="contact-form" method="post" action="" role="form">
 					
 						<div class="form-group">
-							<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+							<input type="text" placeholder="اسم" class="form-control" name="name" id="name">
 						</div>
 						
 						<div class="form-group">
-							<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+							<input type="email" placeholder="ایمیل" class="form-control" name="email" id="email">
 						</div>
 						
 						<div class="form-group">
-							<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+							<input type="text" placeholder="موضوع" class="form-control" name="subject" id="subject">
 						</div>
 						
 						<div class="form-group">
-							<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>	
+							<textarea rows="6" placeholder="پیام شما" class="form-control" name="message" id="message"></textarea>	
 						</div>
 						
 						<div id="mail-success" class="success">
-							Thank you. The Mailman is on His Way :)
+							خیلی ممنون پیام شما ارسال شد :)
 						</div>
 						
 						<div id="mail-fail" class="error">
-							Sorry, don't know what happened. Try later :(
+							خیلی ببخشید دوباره امتحان کنید :(
 						</div>
 						
 						<div id="cf-submit">
-							<input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
+							<input type="submit" id="contact-submit" class="btn btn-transparent" value="ثبت پیام">
 						</div>						
 						
 					</form>

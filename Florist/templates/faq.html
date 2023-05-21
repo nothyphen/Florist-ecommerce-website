@@ -111,8 +111,8 @@ FACEBOOK: https://www.facebook.com/themefisher
 								<span class="total-price">{{ order.get_cart_total }}</span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="{% url 'web:cart' %}" class="btn btn-small">View Cart</a></li>
-								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">Checkout</a></li>
+								<li><a href="{% url 'web:cart' %}" class="btn btn-small">سبد خرید</a></li>
+								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">ثبت نهایی سفارش</a></li>
 							</ul>
 						</div>
 
@@ -124,7 +124,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 								class="tf-ion-ios-search-strong"></i> جست و جو </a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+								<form action="/search/" method="POST">{% csrf_token %}<input name="product" type="search" class="form-control" placeholder="Search..."></form>
 							</li>
 						</ul>
 					</li><!-- / Search -->
@@ -270,11 +270,11 @@ FACEBOOK: https://www.facebook.com/themefisher
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="content">
+				<div style="direction: rtl;" class="content">
 					<h1 class="page-name">سوالات پر تکرار</h1>
 					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li class="active">f.a.q</li>
+						<li><a href="index.html">خانه</a></li>
+						<li class="active">سوالات پر تکرار</li>
 					</ol>
 				</div>
 			</div>
@@ -282,7 +282,7 @@ FACEBOOK: https://www.facebook.com/themefisher
 	</div>
 </section>
 
-<section class="page-wrapper">
+<section style="direction: rtl;" class="page-wrapper">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">

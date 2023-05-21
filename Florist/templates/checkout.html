@@ -96,8 +96,8 @@
 								<span class="total-price">{{ order.get_cart_total }}</span>
 							</div>
 							<ul class="text-center cart-buttons">
-								<li><a href="{% url 'web:cart' %}" class="btn btn-small">View Cart</a></li>
-								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">Checkout</a></li>
+								<li><a href="{% url 'web:cart' %}" class="btn btn-small">سبد خرید</a></li>
+								<li><a href="{% url 'web:checkout' %}" class="btn btn-small btn-solid-border">ثبت نهایی سفارش</a></li>
 							</ul>
 						</div>
 
@@ -109,7 +109,7 @@
 								class="tf-ion-ios-search-strong"></i> جست و جو </a>
 						<ul class="dropdown-menu search-dropdown">
 							<li>
-								<form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+								<form action="/search/" method="POST">{% csrf_token %}<input name="product" type="search" class="form-control" placeholder="Search..."></form>
 							</li>
 						</ul>
 					</li><!-- / Search -->
@@ -255,10 +255,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Checkout</h1>
-					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li class="active">checkout</li>
+					<h1 style="direction: rtl;" class="page-name">ثبت نهایی سفارش</h1>
+					<ol style="direction: rtl;" class="breadcrumb">
+						<li><a href="index.html">خانه</a></li>
+						<li class="active">ثبت نهایی سفارش</li>
 					</ol>
 				</div>
 			</div>
@@ -271,32 +271,32 @@
          <div class="row">
             <div class="col-md-8">
                <div class="block billing-details">
-                  <h4 class="widget-title">Billing Details</h4>
+                  <h4 class="widget-title">اطلاعات محل تحویل</h4>
                   <form action="/process_order/" class="checkout-form">
                      <div class="form-group">
-                        <label for="user_address">Address</label>
+                        <label for="user_address">ادرس</label>
                         <input type="text" class="form-control" id="address" placeholder="">
                      </div>
                      <div class="checkout-country-code clearfix">
                         <div class="form-group">
-                           <label for="user_post_code">Zip Code</label>
+                           <label for="user_post_code">کد پستی</label>
                            <input type="text" class="form-control" id="zipcode" name="zipcode" value="">
                         </div>
                         <div class="form-group" >
-                           <label for="user_city">City</label>
+                           <label for="user_city">شهر</label>
                            <input type="text" class="form-control" id="city" name="city" value="">
                         </div>
                      </div>
                      <div class="form-group">
-                        <label for="user_country">state</label>
+                        <label for="user_country">استان</label>
                         <input type="text" class="form-control" id="state" placeholder="">
                      </div>
 					 <div class="form-group">
-                        <label for="user_country">Street</label>
+                        <label for="user_country">خیابان</label>
                         <input type="text" class="form-control" id="street" placeholder="">
                      </div>
                   </form>
-				  <button class="btn btn-main btn-large btn-round-full"><i class="tf-ion-ios-cart-outline"></i>ثبت نهایی اطلاعات</button>
+				  <button style="direction: rtl;" class="btn btn-main btn-large btn-round-full"><i class="tf-ion-ios-cart-outline"></i>ثبت نهایی اطلاعات</button>
                </div>
                <div class="block">
                   
@@ -305,7 +305,7 @@
             <div class="col-md-4">
                <div class="product-checkout-details">
                   <div class="block">
-                     <h4 class="widget-title">Order Summary</h4>
+                     <h4 class="widget-title">سبد خرید</h4>
 					 {% for item in items %}
                      <div class="media product-card">
                         <a class="pull-left" href="product-single.html">
@@ -319,17 +319,17 @@
 					 {% endfor %}
                      <ul class="summary-prices">
                         <li>
-                           <span>Shipping:</span>
-                           <span>Free</span>
+						   <br>
+						   <hr>
+                           <span>هزینه پست :</span>
+                           <span>رایگان</span>
                         </li>
                      </ul>
-                     <div class="summary-total">
-                        <span>Total</span>
-                        <span>{{order.get_cart_total}}</span>
+                     <div style="direction: rtl;" class="summary-total">
+						<span>قیمت کل: </span>
                      </div>
-                     <div class="verified-icon">
-                        <img src="{% static "images/shop/verified.png" %}">
-                     </div>
+					 <span>{{order.get_cart_total}}</span>
+                     
                   </div>
                </div>
             </div>

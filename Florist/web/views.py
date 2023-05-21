@@ -154,9 +154,11 @@ def contact(request):
 def about(request):
     category = Category.objects.all()
     about = AboutUs.objects.all()
+    member = CompanyMember.objects.all()
     context = {
         'abouts' : about,
         'categories' : category,
+        'members' : member,
     }
     return render(request, 'about.html', context=context)
 
